@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.Idcheck;
+import service.Login;
 import service.MemberInsert;
+import service.UpdateMember;
 
 /**
  * Servlet implementation class MemberController
@@ -55,7 +57,36 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		// 로그인(회원인증)
+		}else if(command.equals("/Login.do")) {
+			try {
+				action = new Login();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		// 로그인 폼
+		}else if(command.equals("/LoginForm.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/loginform.jsp");
+			
+		// 로그아웃
+		}else if(command.equals("/Logout.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/logout.jsp");
+		
+		// 회원정보 수정폼
+		}else if(command.equals("/UpdateMember.do")) {
+			try {
+				action = new UpdateMember();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {				// redirect 방식으로 포워딩

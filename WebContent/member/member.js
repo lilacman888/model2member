@@ -1,7 +1,8 @@
+//	member
 $(document).ready(function(){	
 	
 	// ID 중복검사
-	$("#idcheck").click(function(){
+/*	$("#idcheck").click(function(){
 		if($("#id").val()==""){
 			alert("ID를 입력하세요");
 			$("#id").focus();
@@ -28,15 +29,15 @@ $(document).ready(function(){
 				}
 			});			
 		}		
-	});
+	});*/
 	
 	
-	/*$("#id").keyup(function(){
+	$("#id").keyup(function(){
 		var id = $("#id").val();
 		
 		$.ajax({
 			type:"post",
-			url:"idcheck1.jsp",
+			url:"/model2member/Idcheck.do",
 			data:{"id":id},
 			datatype:"text",
 			success:function(data){
@@ -51,7 +52,7 @@ $(document).ready(function(){
 				}					
 			}
 		});			
-	});*/
+	});
 	
 	
 	
@@ -65,12 +66,12 @@ $(document).ready(function(){
 	
 	// 도메인 선택
 	$("select").change(function(){
-		if($("select").val() == ""){	// 직접 입력 선택	
+		if($("#email").val() == ""){	// 직접 입력 선택	
 //			$("#domain").attr("readonly", false);
 			$("#domain").removeAttr("readonly");
 			$("#domain").val("").focus();			
 		}else{							// 도메인명 선택
-			$("#domain").val($("select").val());
+			$("#domain").val($("#email").val());
 		    $("#domain").attr("readonly","readonly");
 		}
 	});

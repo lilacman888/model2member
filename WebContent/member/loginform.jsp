@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <!-- 외부 자바스크립트 파일 불러오기 -->
-<script src="login.js"></script>
+<script src="<%=request.getContextPath()%>/member/login.js"></script>
 </head>
 <body>
 

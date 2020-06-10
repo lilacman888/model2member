@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	모델 2 회원 관리
+	<!-- 모델 2 회원 관리 -->
+<script>
+	location.href="./LoginForm.do";
+</script>
 </body>
 </html>
