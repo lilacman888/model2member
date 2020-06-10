@@ -83,7 +83,6 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
 			if(rs.next()) {					// 중복 ID
 				result = 1;
 			}else {							// 사용 가능한 ID
