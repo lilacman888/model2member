@@ -142,6 +142,25 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getNString("name"));
+				member.setJumin1(rs.getString("jumin1"));
+				member.setJumin2(rs.getString("jumin2"));
+				member.setMailid(rs.getString("mailid"));
+				member.setDomain(rs.getString("domain"));
+				member.setTel1(rs.getString("tel1"));
+				member.setTel2(rs.getString("tel2"));
+				member.setTel3(rs.getString("tel3"));
+				member.setPhone1(rs.getString("phone1"));
+				member.setPhone2(rs.getString("phone2"));
+				member.setPhone3(rs.getString("phone3"));
+				member.setPost(rs.getString("post"));
+				member.setAddress(rs.getString("address"));
+				member.setGender(rs.getString("gender"));
+				member.setHobby(rs.getString("hobby"));
+				member.setIntro(rs.getString("intro"));
+				member.setRegister(rs.getTimestamp("register"));
 			}
 			
 		} catch (Exception e) {
@@ -150,11 +169,70 @@ public class MemberDAO {
 			if(rs != null) { try {rs.close();}catch(Exception e){ e.printStackTrace();}}
 			if(pstmt != null) { try {pstmt.close();}catch(Exception e){ e.printStackTrace();}}
 			if(con != null) { try {con.close();}catch(Exception e){ e.printStackTrace();}}
-			
 		}
 		
 		return member;
 	}
+	
+	// 회원정보 수정
+	public int update(MemberDTO member) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			String sql = "update member0609 set name=?, jumin1=?, jumin2=?,"
+					+ " mailid=?, domain=?, tel1=?, tel2=?, tel3=?,"
+					+ " phone1=?, phone2=?, phone3=?, post=?, address=?,"
+					+ " gender=?, hobby=?, intro=? where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getJumin1());
+			pstmt.setString(3, member.getJumin2());
+			pstmt.setString(4, member.getMailid());
+			pstmt.setString(5, member.getDomain());
+			pstmt.setString(6, member.getTel1());
+			pstmt.setString(7, member.getTel2());
+			pstmt.setString(8, member.getTel3());
+			pstmt.setString(9, member.getPhone1());
+			pstmt.setString(10, member.getPhone2());
+			pstmt.setString(11, member.getPhone3());
+			pstmt.setString(12, member.getPost());
+			pstmt.setString(13, member.getAddress());
+			pstmt.setString(14, member.getGender());
+			pstmt.setString(15, member.getHobby());
+			pstmt.setString(16, member.getIntro());
+			pstmt.setString(17, member.getId());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) { try {pstmt.close();}catch(Exception e){ e.printStackTrace();}}
+			if(con != null) { try {con.close();}catch(Exception e){ e.printStackTrace();}}			
+		}
+		return result;
+	}
+	// 회원탈퇴
+	public int delete(String id) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			String sql = "delete from member0609 where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) { try {pstmt.close();}catch(Exception e){ e.printStackTrace();}}
+			if(con != null) { try {con.close();}catch(Exception e){ e.printStackTrace();}}			
+		}
+		return result;
+	}
+	
 	
 
 }

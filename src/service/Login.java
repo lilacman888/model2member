@@ -21,6 +21,7 @@ public class Login implements Action {
 		
 		//세션 객체 생성
 		HttpSession session = request.getSession();
+		
 		PrintWriter out = response.getWriter();
 		
 		String id = request.getParameter("id");
@@ -39,6 +40,8 @@ public class Login implements Action {
 			out.print("history.go(-1);");
 			out.print("</script>");
 			out.close();
+			
+			return null;
 		}
 		
 		

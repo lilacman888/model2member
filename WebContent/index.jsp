@@ -9,7 +9,7 @@
 <body>
 	<!-- 모델 2 회원 관리 -->
 <script>
-	location.href="./LoginForm.do";
+	location.href="./member/main.jsp";
 </script>
 </body>
 </html>

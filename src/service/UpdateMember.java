@@ -7,22 +7,29 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDAO;
 import model.MemberDTO;
 
-public class UpdateMember implements Action {
+public class UpdateMember implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 		System.out.println("UpdateMember");
 		
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+		String id = (String)session.getAttribute("id");
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberDTO member = dao.getMember(id);
 		
+		String hobby = member.getHobby();	// "공부-게임-등산-"
+		String[] h = hobby.split("-");
 		
-		ActionForward forward = new ActionForward();
-//		forward.setRedirect(false);
-//		forward.setPath("/UpdateMember.do");
+		request.setAttribute("member", member);				
+		request.setAttribute("h", h);				
+		
+		ActionForward forward = new ActionForward();	
+		forward.setRedirect(false);        // dispatcher 방식으로 포워딩
+		forward.setPath("/member/updateform.jsp");
+		
 		return forward;
 	}
 

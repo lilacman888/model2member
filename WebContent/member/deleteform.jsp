@@ -8,27 +8,22 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <!-- 외부 자바스크립트 파일 불러오기 -->
-<script src="<%=request.getContextPath()%>/member/login.js"></script>
+<script src="<%=request.getContextPath()%>/member/member.js"></script>
 </head>
 <body>
 
-<form method="post" action="<%=request.getContextPath()%>/Login.do">
+<form method="post" action="<%=request.getContextPath()%>/Delete.do">
+<input type="hidden" name="id" value="${session.Scope.id}">
 	<table border=1 width=350 align="center">
-		<caption>로그인</caption>
-		<tr>
-			<td>아이디</td>
-			<td><input type=text size=30 id="id" name="id" autofocus></td>
-		</tr>
+		<caption>회원 탈퇴</caption>
 		<tr>
 			<td>비밀번호</td>
 			<td><input type="password" size=30 id="passwd" name="passwd"></td>
 		</tr>
 		<tr>
 			<td colspan=2 align=center>
-				<input type="button" value="회원가입" 
-						onClick="location.href='<%=request.getContextPath()%>/MemberForm.do'">
-				<input type="submit" value="로그인">
-				<input type="reset" value="취소">
+				<input type="submit" value="탈퇴">
+				<input type="reset" value="취소" onClick="history.go(-1)">
 			</td>
 		</tr>
 	</table>

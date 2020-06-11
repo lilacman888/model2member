@@ -7,7 +7,7 @@
 	${sessionScope.id}님 환영합니다.<br><br>
 	<a href="<%=request.getContextPath()%>/UpdateMember.do">회원정보 수정</a> <br><br>
 	<a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a> <br><br>
-	<a href="">회원 삭제</a> <br><br>
+	<a href="<%=request.getContextPath()%>/DeleteMember.do">회원 삭제</a> <br><br>
 </c:if>
 
 <!-- 세션이 없으면 -->
